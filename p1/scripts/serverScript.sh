@@ -1,0 +1,33 @@
+#!/bin/sh
+
+# INTERFACE=$(ip route | grep default | awk '{print $5}')
+
+curl -sfL https://get.k3s.io | sudo sh -s -  server \
+    --flannel-iface=enp0s3 \
+    --write-kubeconfig-mode=644 \
+    --token=vagrant-k3s-token \
+    --node-ip="192.168.56.110"
+
+sleep 10
+# sudo cp /var/lib/rancher/k3s/server/node-token /vagrant/node-token
+
+# # Save the kubeconfig file correctly
+# KUBE_CONFIG="/etc/rancher/k3s/k3s.yaml"
+# sudo cp ${KUBE_CONFIG} /vagrant/
+
+
+NODE_TOKEN="/var/lib/rancher/k3s/server/node-token"
+while [ ! -e ${NODE_TOKEN} ]
+    do
+        sleep 2
+    done
+
+
+# sudo cat ${NODE_TOKEN}
+sudo cp ${NODE_TOKEN} /vagrant/
+KUBE_CONFIG="/etc/rancher/k3s/k3s.yaml"
+sudo cp ${KUBE_CONFIG} /vagrant/
+
+sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+
+export KUBECONFIG=/etc/rancher/k3s/k3s.yaml
