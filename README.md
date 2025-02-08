@@ -29,3 +29,11 @@ Ensure you have the following installed:
 ```sh
 git clone https://github.com/iouardi1/inception-of-things.git
 cd inception-of-things
+```
+
+
+### 3️⃣ Start the Virtual Environment
+
+```ssh
+vagrant up
+```
