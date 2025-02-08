@@ -25,3 +25,7 @@ Ensure you have the following installed:
 - [K3d](https://k3d.io/)
 - [Argo CD](https://argo-cd.readthedocs.io/)
 
+### 2️⃣ Clone the Repository
+```sh
+git clone https://github.com/iouardi1/inception-of-things.git
+cd inception-of-things
